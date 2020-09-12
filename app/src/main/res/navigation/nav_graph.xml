@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    android:orientation="vertical"
+    app:startDestination="@id/github_repos_list_dest"
+    tools:context=".ui.NavHostActivity">
+
+    <fragment
+        android:id="@+id/github_repos_list_dest"
+        android:name="com.josealfonsomora.jetpackgithubtrends.ui.reposlist.GithubReposListFragment"
+        tools:layout="@layout/github_repos_list_fragment" />
+
+</navigation>

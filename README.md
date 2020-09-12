@@ -36,6 +36,8 @@ enough to be released to production
 
 [Paging 3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
 
+[Arch Core](https://developer.android.com/jetpack/androidx/releases/arch-core)
+
 #### External Dependencies
 
 [Retrofit](https://square.github.io/retrofit/) 

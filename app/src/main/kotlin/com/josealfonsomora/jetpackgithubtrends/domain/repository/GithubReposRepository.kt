@@ -1,7 +1,10 @@
 package com.josealfonsomora.jetpackgithubtrends.domain.repository
 
-import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepository
+interface GithubReposRepository {
+    suspend fun getGithubRepos(): Result
 
-internal interface GithubReposRepository {
-    suspend fun getGithubRepos(): List<GithubRepository>
+    sealed class Result {
+        class Success<T>(val data: T) : Result()
+        class Error<T>(val throwable: T) : Result()
+    }
 }

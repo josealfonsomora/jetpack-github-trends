@@ -16,7 +16,7 @@ import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 
 @ExperimentalCoroutinesApi
-internal class GitHubReposListViewModelTest {
+class GitHubReposListViewModelTest {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 

@@ -14,8 +14,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
 class GitHubReposListViewModel @ViewModelInject constructor(
-    val useCase: GetGithubReposUseCase,
-    @IoDispatcher val ioDispatcher: CoroutineDispatcher
+    private val useCase: GetGithubReposUseCase,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
     private val _loadingVisibility = MutableLiveData<Int>(View.GONE)

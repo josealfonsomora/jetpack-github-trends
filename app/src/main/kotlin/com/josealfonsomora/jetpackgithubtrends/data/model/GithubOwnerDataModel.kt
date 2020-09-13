@@ -1,10 +1,11 @@
 package com.josealfonsomora.jetpackgithubtrends.data.model
 
 import com.google.gson.annotations.SerializedName
+import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubOwner
 
 data class GithubOwnerDataModel(
-	@SerializedName("login") val login: String,
 	@SerializedName("id") val id: Int,
+	@SerializedName("login") val login: String,
 	@SerializedName("node_id") val nodeId: String,
 	@SerializedName("avatar_url") val avatarUrl: String,
 	@SerializedName("gravatar_id") val gravatarId: String,
@@ -21,4 +22,25 @@ data class GithubOwnerDataModel(
 	@SerializedName("received_events_url") val receivedEventsUrl: String,
 	@SerializedName("type") val type: String,
 	@SerializedName("site_admin") val siteAdmin: Boolean
+)
+
+fun GithubOwnerDataModel.toDomainModel() = GithubOwner(
+	id = this.id,
+	login = this.login,
+	nodeId = this.nodeId,
+	avatarUrl = this.avatarUrl,
+	gravatarId = this.gravatarId,
+	url = this.url,
+	htmlUrl = this.htmlUrl,
+	followersUrl = this.followersUrl,
+	followingUrl = this.followingUrl,
+	gistsUrl = this.gistsUrl,
+	starredUrl = this.starredUrl,
+	subscriptionsUrl = this.subscriptionsUrl,
+	organizationsUrl = this.organizationsUrl,
+	reposUrl = this.reposUrl,
+	eventsUrl = this.eventsUrl,
+	receivedEventsUrl = this.receivedEventsUrl,
+	type = this.type,
+	siteAdmin = this.siteAdmin
 )

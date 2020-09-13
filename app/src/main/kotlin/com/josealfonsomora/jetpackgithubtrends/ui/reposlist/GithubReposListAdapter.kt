@@ -25,7 +25,7 @@ class GithubReposListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[holder.adapterPosition]
         holder.bind(item)
-        holder.layout.setOnClickListener { onClickListener(item.id) }
+        holder.layout.setOnClickListener { item.id?.let { onClickListener(it) } }
     }
 
     fun updateList(list: List<GithubRepository>) {

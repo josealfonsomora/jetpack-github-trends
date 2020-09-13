@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Jetpack Github Trends</string>
+    <string name="error_loading_repos">Error loading repositories</string>
 </resources>

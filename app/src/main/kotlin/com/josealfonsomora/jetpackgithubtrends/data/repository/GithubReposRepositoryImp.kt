@@ -13,7 +13,7 @@ class GithubReposRepositoryImp(
 ) : GithubReposRepository {
 
     override suspend fun getGithubRepos() = try {
-        val savedData = database.getAllGithubRepos()
+        val savedData = database.getGithubRepos()
         if (savedData.isNotEmpty()) {
             GithubReposRepository.Result.Success(savedData)
         } else {

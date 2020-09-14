@@ -33,7 +33,7 @@ class GithubReposRepositoryImpTest {
     private val api: GithubApi = mockk(relaxed = true)
 
     private val database: AppDatabase = mockk(relaxUnitFun = true) {
-        coEvery { getAllGithubRepos() } returns emptyList()
+        coEvery { getGithubRepos() } returns emptyList()
     }
 
     private val underTest = GithubReposRepositoryImp(api, database)
@@ -117,7 +117,7 @@ class GithubReposRepositoryImpTest {
         )
         coEvery { api.getRepositories() } returns Response.success(response)
         val databaseRepos = listOf(mockk<GithubRepo>())
-        coEvery { database.getAllGithubRepos() } returns databaseRepos
+        coEvery { database.getGithubRepos() } returns databaseRepos
         val result = underTest.getGithubRepos()
 
         assertTrue(result is GithubReposRepository.Result.Success<*>)

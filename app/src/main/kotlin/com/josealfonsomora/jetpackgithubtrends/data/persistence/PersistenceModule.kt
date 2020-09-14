@@ -1,6 +1,9 @@
 package com.josealfonsomora.jetpackgithubtrends.data.persistence
 
 import android.content.Context
+import androidx.datastore.DataStore
+import androidx.datastore.preferences.Preferences
+import androidx.datastore.preferences.createDataStore
 import androidx.room.Room
 import com.josealfonsomora.jetpackgithubtrends.data.persistence.database.GithubReposDb
 import dagger.Module
@@ -21,4 +24,9 @@ class PersistenceModule {
             context,
             GithubReposDb::class.java, "githubrepos.db"
         ).build()
+
+    @Provides
+    @Singleton
+    fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> =
+        context.createDataStore(name = "cache")
 }

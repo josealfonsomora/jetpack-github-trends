@@ -31,6 +31,10 @@ class GithubReposListFragment : Fragment(R.layout.github_repos_list_fragment) {
             adapter.updateList(list)
         })
 
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.loadData()
+        }
+
         viewModel.stateEvent.observe(viewLifecycleOwner, {
             it?.getContentIfNotHandled()?.let { state ->
                 when (state) {

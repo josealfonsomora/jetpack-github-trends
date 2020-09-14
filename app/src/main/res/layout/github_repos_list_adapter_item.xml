@@ -1,15 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/layout">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
+    <data>
+
+        <variable
+            name="model"
+            type="com.josealfonsomora.jetpackgithubtrends.ui.reposlist.GithubReposListAdapterItemViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_margin="4dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:elevation="4dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="4dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:padding="8dp"
+                android:text="@{model.name}"
+                app:drawableStartCompat="@drawable/ic_repo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Repository name" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name">
+
+                <TextView
+                    android:id="@+id/stars"
+                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="4dp"
+                    android:padding="8dp"
+                    android:text="@{model.stars}"
+                    app:drawableStartCompat="@drawable/ic_star"
+                    app:drawableTint="@android:color/black"
+                    tools:text="12.2K" />
+
+                <TextView
+                    android:id="@+id/watchers"
+                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="4dp"
+                    android:padding="8dp"
+                    android:text="@{model.watchers}"
+                    app:drawableStartCompat="@drawable/ic_eye"
+                    app:drawableTint="@android:color/black"
+                    tools:text="12.2K" />
+
+                <TextView
+                    android:id="@+id/forks"
+                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="4dp"
+                    android:padding="8dp"
+                    android:text="@{model.forks}"
+                    app:drawableStartCompat="@drawable/ic_fork"
+                    app:drawableTint="@android:color/black"
+                    tools:text="12.2K" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="4dp"
+                android:padding="8dp"
+                android:text="@{model.license}"
+                android:visibility="@{model.licenseVisibility}"
+                app:drawableStartCompat="@drawable/ic_license"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

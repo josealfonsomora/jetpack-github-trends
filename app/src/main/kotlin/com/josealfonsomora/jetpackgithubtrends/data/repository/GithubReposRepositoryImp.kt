@@ -5,6 +5,7 @@ import com.josealfonsomora.jetpackgithubtrends.data.network.GithubApi
 import com.josealfonsomora.jetpackgithubtrends.data.persistence.database.AppDatabase
 import com.josealfonsomora.jetpackgithubtrends.domain.exceptions.EmptyContentException
 import com.josealfonsomora.jetpackgithubtrends.domain.repository.GithubReposRepository
+import timber.log.Timber
 
 class GithubReposRepositoryImp(
     private val githubApi: GithubApi,
@@ -29,6 +30,7 @@ class GithubReposRepositoryImp(
             }
         }
     } catch (e: Throwable) {
+        Timber.e(e, "Error loading github repos")
         GithubReposRepository.Result.Error(e)
     }
 }

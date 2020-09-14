@@ -4,7 +4,7 @@ import android.view.View
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.josealfonsomora.jetpackgithubtrends.CoroutinesTestRule
-import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepository
+import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepo
 import com.josealfonsomora.jetpackgithubtrends.domain.usecase.GetGithubReposUseCase
 import com.josealfonsomora.jetpackgithubtrends.ui.Event
 import io.mockk.*
@@ -62,12 +62,12 @@ class GitHubReposListViewModelTest {
     @Test
     fun `loads data using use case`() {
         val list = listOf(
-            GithubRepository(name = "repo 1"),
-            GithubRepository(name = "repo 2")
+            GithubRepo(name = "repo 1"),
+            GithubRepo(name = "repo 2")
         )
         coEvery { userCase.execute() } returns GetGithubReposUseCase.Result.Success(list)
 
-        val observer = spyk<Observer<List<GithubRepository>>>()
+        val observer = spyk<Observer<List<GithubRepo>>>()
         underTest.githubRepos.observeForever(observer)
 
         underTest.loadData()

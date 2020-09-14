@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.josealfonsomora.jetpackgithubtrends.di.IoDispatcher
-import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepository
+import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepo
 import com.josealfonsomora.jetpackgithubtrends.domain.usecase.GetGithubReposUseCase
 import com.josealfonsomora.jetpackgithubtrends.ui.Event
 import kotlinx.coroutines.CoroutineDispatcher
@@ -18,11 +18,11 @@ class GitHubReposListViewModel @ViewModelInject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
-    private val _loadingVisibility = MutableLiveData<Int>(View.GONE)
+    private val _loadingVisibility = MutableLiveData(View.GONE)
     val loadingVisibility: LiveData<Int> = _loadingVisibility
 
-    private val _githubRepos = MutableLiveData<List<GithubRepository>>()
-    val githubRepos: LiveData<List<GithubRepository>> = _githubRepos
+    private val _githubRepos = MutableLiveData<List<GithubRepo>>()
+    val githubRepos: LiveData<List<GithubRepo>> = _githubRepos
 
     private val _stateEvent = MutableLiveData<Event<State>>()
     val stateEvent: LiveData<Event<State>> = _stateEvent

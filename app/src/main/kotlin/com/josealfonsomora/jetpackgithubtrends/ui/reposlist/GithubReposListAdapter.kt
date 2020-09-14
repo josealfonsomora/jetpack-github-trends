@@ -7,10 +7,10 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.josealfonsomora.jetpackgithubtrends.R
-import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepository
+import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepo
 
 class GithubReposListAdapter(
-    var items: List<GithubRepository> = emptyList(),
+    var items: List<GithubRepo> = emptyList(),
     val onClickListener: (Int) -> Unit
 ) : RecyclerView.Adapter<GithubReposListAdapter.ViewHolder>() {
 
@@ -28,7 +28,7 @@ class GithubReposListAdapter(
         holder.layout.setOnClickListener { item.id?.let { onClickListener(it) } }
     }
 
-    fun updateList(list: List<GithubRepository>) {
+    fun updateList(list: List<GithubRepo>) {
         items = list
         notifyDataSetChanged()
     }
@@ -37,13 +37,8 @@ class GithubReposListAdapter(
         val name: TextView = view.findViewById(R.id.name)
         val layout: ConstraintLayout = view.findViewById(R.id.layout)
 
-        fun bind(item: GithubRepository) {
+        fun bind(item: GithubRepo) {
             name.text = item.name
         }
     }
 }
-
-class GithubReposListAdapterItem(
-    val id: Int,
-    val name: String
-)

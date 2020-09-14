@@ -1,8 +1,8 @@
 package com.josealfonsomora.jetpackgithubtrends.domain.model
 
 data class GithubOwner (
-	val login : String,
 	val id : Int,
+	val login : String,
 	val nodeId : String,
 	val avatarUrl : String,
 	val gravatarId : String,

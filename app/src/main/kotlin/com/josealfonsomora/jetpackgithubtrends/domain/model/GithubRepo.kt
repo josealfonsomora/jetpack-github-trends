@@ -1,6 +1,6 @@
 package com.josealfonsomora.jetpackgithubtrends.domain.model
 
-data class GithubRepository(
+data class GithubRepo(
 	val id: Int? = 0,
 	val nodeId: String? = "",
 	val name: String? = "",

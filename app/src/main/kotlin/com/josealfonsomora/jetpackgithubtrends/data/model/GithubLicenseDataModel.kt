@@ -1,6 +1,7 @@
 package com.josealfonsomora.jetpackgithubtrends.data.model
 
 import com.google.gson.annotations.SerializedName
+import com.josealfonsomora.jetpackgithubtrends.data.persistence.database.entity.GithubLicenseEntity
 import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubLicense
 
 data class GithubLicenseDataModel(
@@ -20,3 +21,11 @@ fun GithubLicenseDataModel?.toDomainModel() = this?.let {
         nodeId = this.nodeId
     )
 }
+
+fun GithubLicenseDataModel.toDatabaseEntity() = GithubLicenseEntity(
+    key = key ?: "",
+    name = this.name,
+    spdxId = this.spdxId,
+    url = this.url,
+    nodeId = this.nodeId
+)

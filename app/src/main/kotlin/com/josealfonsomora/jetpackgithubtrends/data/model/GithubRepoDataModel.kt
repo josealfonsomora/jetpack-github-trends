@@ -1,9 +1,10 @@
 package com.josealfonsomora.jetpackgithubtrends.data.model
 
 import com.google.gson.annotations.SerializedName
-import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepository
+import com.josealfonsomora.jetpackgithubtrends.data.persistence.database.entity.GithubRepoEntity
+import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepo
 
-data class GithubRepositoryDataModel(
+data class GithubRepoDataModel(
 	@SerializedName("id") val id: Int?,
 	@SerializedName("node_id") val nodeId: String?,
 	@SerializedName("name") val name: String?,
@@ -81,7 +82,7 @@ data class GithubRepositoryDataModel(
 )
 
 
-fun GithubRepositoryDataModel.toDomainModel() = GithubRepository(
+fun GithubRepoDataModel.toDomainModel() = GithubRepo(
 	id = this.id,
 	nodeId = this.nodeId,
 	name = this.name,
@@ -156,4 +157,81 @@ fun GithubRepositoryDataModel.toDomainModel() = GithubRepository(
 	watchers = this.watchers,
 	defaultBranch = this.defaultBranch,
 	score = this.score
+)
+
+fun GithubRepoDataModel.toDatabaseEntity() = GithubRepoEntity(
+	id = this.id!!,
+	nodeId = this.nodeId,
+	name = this.name,
+	fullName = this.fullName,
+	isPrivate = this.private ?: false,
+	owner = this.owner?.id ?: 0,
+	htmlUrl = this.htmlUrl,
+	description = this.description,
+	fork = this.fork ?: false,
+	url = this.url,
+	forksUrl = this.forksUrl,
+	keysUrlsUrl = this.keysUrlsUrl,
+	collaboratorsUrl = this.collaboratorsUrl,
+	teamsUrl = this.teamsUrl,
+	hooksUrl = this.hooksUrl,
+	repoIssueEventsUrl = this.issueEventsUrl,
+	eventsUrl = this.eventsUrl,
+	assigneesUrl = this.assigneesUrl,
+	branchesUrl = this.branchesUrl,
+	tagsUrl = this.tagsUrl,
+	blobsUrl = this.blobsUrl,
+	gitTagsUrl = this.gitTagsUrl,
+	gitRefsUrl = this.gitRefsUrl,
+	treesUrl = this.treesUrl,
+	statusesUrl = this.statusesUrl,
+	languagesUrl = this.languagesUrl,
+	stargazersUrl = this.stargazersUrl,
+	contributorsUrl = this.contributorsUrl,
+	subscribersUrl = this.subscribersUrl,
+	subscriptionUrl = this.subscriptionUrl,
+	commitsUrl = this.commitsUrl,
+	gitCommitsUrl = this.gitCommitsUrl,
+	commentsUrl = this.commentsUrl,
+	repoIssueCommentUrl = this.issueEventsUrl,
+	contentsUrl = this.contentsUrl,
+	compareUrl = this.compareUrl,
+	mergesUrl = this.mergesUrl,
+	archiveUrl = this.archiveUrl,
+	downloadsUrl = this.downloadsUrl,
+	repoIssuesUrl = this.issuesUrl,
+	pullsUrl = this.pullsUrl,
+	milestonesUrl = this.milestonesUrl,
+	notificationsUrl = this.notificationsUrl,
+	labelsUrl = this.labelsUrl,
+	releasesUrl = this.releasesUrl,
+	deploymentsUrl = this.deploymentsUrl,
+	createdAt = this.createdAt,
+	updatedAt = this.updatedAt,
+	pushedAt = this.pushedAt,
+	gitUrl = this.gitUrl,
+	sshUrl = this.sshUrl,
+	cloneUrl = this.cloneUrl,
+	svnUrl = this.svnUrl,
+	homepage = this.homepage,
+	size = this.size ?: 0,
+	stargazersCount = this.stargazersCount ?: 0,
+	watchersCount = this.watchersCount ?: 0,
+	language = this.language,
+	hasIssues = this.hasIssues ?: false,
+	hasProjects = this.hasProjects ?: false,
+	hasDownloads = this.hasDownloads ?: false,
+	hasWiki = this.hasWiki ?: false,
+	hasPages = this.hasPages ?: false,
+	forksCount = this.forksCount ?: 0,
+	mirrorUrl = this.mirrorUrl,
+	archived = this.archived ?: false,
+	disabled = this.disabled ?: false,
+	openIssuesCount = this.openIssuesCount ?: 0,
+	license = this.license?.key,
+	forks = this.forks ?: 0,
+	openIssues = this.openIssues ?: 0,
+	watchers = this.watchers ?: 0,
+	defaultBranch = this.defaultBranch,
+	score = this.score ?: 0,
 )

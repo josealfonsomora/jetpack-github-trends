@@ -2,10 +2,12 @@ package com.josealfonsomora.jetpackgithubtrends.data.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.josealfonsomora.jetpackgithubtrends.CoroutinesTestRule
-import com.josealfonsomora.jetpackgithubtrends.data.model.GithubRepositoryDataModel
+import com.josealfonsomora.jetpackgithubtrends.data.model.GithubRepoDataModel
 import com.josealfonsomora.jetpackgithubtrends.data.network.GetGithubRepositoriesResponse
 import com.josealfonsomora.jetpackgithubtrends.data.network.GithubApi
+import com.josealfonsomora.jetpackgithubtrends.data.persistence.database.AppDatabase
 import com.josealfonsomora.jetpackgithubtrends.domain.exceptions.EmptyContentException
+import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepo
 import com.josealfonsomora.jetpackgithubtrends.domain.repository.GithubReposRepository
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -27,17 +29,22 @@ class GithubReposRepositoryImpTest {
 
     @get:Rule
     val ctr = CoroutinesTestRule()
+
     private val api: GithubApi = mockk(relaxed = true)
 
-    private val underTest = GithubReposRepositoryImp(api)
+    private val database: AppDatabase = mockk(relaxUnitFun = true) {
+        coEvery { getAllGithubRepos() } returns emptyList()
+    }
+
+    private val underTest = GithubReposRepositoryImp(api, database)
 
     @Test
     fun `return repos from Github api`() = ctr.dispatcher.runBlockingTest {
 
-        val repositoryDataModel: GithubRepositoryDataModel =
+        val repoDataModel: GithubRepoDataModel =
             mockk(relaxed = true, relaxUnitFun = true)
         val list = listOf(
-            repositoryDataModel,
+            repoDataModel,
         )
         val response = GetGithubRepositoriesResponse(
             count = 1,
@@ -99,4 +106,21 @@ class GithubReposRepositoryImpTest {
         assertEquals(illegalArgumentException, error)
     }
 
+    @Test
+    fun `returns saved data from database when available`() = ctr.dispatcher.runBlockingTest {
+        val repoDataModel: GithubRepoDataModel = mockk(relaxed = true, relaxUnitFun = true)
+        val list = listOf(repoDataModel)
+        val response = GetGithubRepositoriesResponse(
+            count = 1,
+            incompleteResults = false,
+            items = list
+        )
+        coEvery { api.getRepositories() } returns Response.success(response)
+        val databaseRepos = listOf(mockk<GithubRepo>())
+        coEvery { database.getAllGithubRepos() } returns databaseRepos
+        val result = underTest.getGithubRepos()
+
+        assertTrue(result is GithubReposRepository.Result.Success<*>)
+        assertEquals(databaseRepos, (result as GithubReposRepository.Result.Success<*>).data)
+    }
 }

@@ -1,6 +1,7 @@
 package com.josealfonsomora.jetpackgithubtrends.data.model
 
 import com.google.gson.annotations.SerializedName
+import com.josealfonsomora.jetpackgithubtrends.data.persistence.database.entity.GithubOwnerEntity
 import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubOwner
 
 data class GithubOwnerDataModel(
@@ -25,6 +26,27 @@ data class GithubOwnerDataModel(
 )
 
 fun GithubOwnerDataModel.toDomainModel() = GithubOwner(
+	id = this.id,
+	login = this.login,
+	nodeId = this.nodeId,
+	avatarUrl = this.avatarUrl,
+	gravatarId = this.gravatarId,
+	url = this.url,
+	htmlUrl = this.htmlUrl,
+	followersUrl = this.followersUrl,
+	followingUrl = this.followingUrl,
+	gistsUrl = this.gistsUrl,
+	starredUrl = this.starredUrl,
+	subscriptionsUrl = this.subscriptionsUrl,
+	organizationsUrl = this.organizationsUrl,
+	reposUrl = this.reposUrl,
+	eventsUrl = this.eventsUrl,
+	receivedEventsUrl = this.receivedEventsUrl,
+	type = this.type,
+	siteAdmin = this.siteAdmin
+)
+
+fun GithubOwnerDataModel.toDatabaseEntity() = GithubOwnerEntity(
 	id = this.id,
 	login = this.login,
 	nodeId = this.nodeId,

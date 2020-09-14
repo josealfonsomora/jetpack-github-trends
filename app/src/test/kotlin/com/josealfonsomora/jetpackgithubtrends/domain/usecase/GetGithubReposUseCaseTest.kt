@@ -3,7 +3,7 @@ package com.josealfonsomora.jetpackgithubtrends.domain.usecase
 import android.accounts.NetworkErrorException
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.josealfonsomora.jetpackgithubtrends.CoroutinesTestRule
-import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepository
+import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepo
 import com.josealfonsomora.jetpackgithubtrends.domain.repository.GithubReposRepository
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -23,14 +23,14 @@ class GetGithubReposUseCaseTest {
     val ctr = CoroutinesTestRule()
 
     private val repository: GithubReposRepository = mockk(relaxed = true) {
-        coEvery { getGithubRepos() } returns GithubReposRepository.Result.Success(emptyList<GithubRepository>())
+        coEvery { getGithubRepos() } returns GithubReposRepository.Result.Success(emptyList<GithubRepo>())
     }
 
     private val underTest = GetGithubReposUseCase(repository)
 
     @Test
     fun `returns list of github repositories from network`() = ctr.dispatcher.runBlockingTest {
-        val list = emptyList<GithubRepository>()
+        val list = emptyList<GithubRepo>()
         coEvery { repository.getGithubRepos() } returns GithubReposRepository.Result.Success(list)
 
         val result = underTest.execute()

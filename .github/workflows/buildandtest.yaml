@@ -1,0 +1,14 @@
+name: "Build unit tests"
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Fetch master branch
+      uses: actions/checkout@v2
+
+    - name: Grant gradle rights
+      run: chmod +x ./gradlew
+
+    - name: Run unit tests
+      run: ./gradlew clean test

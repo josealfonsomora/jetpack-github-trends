@@ -2,6 +2,8 @@
 
 Android Jetpack example - List of trending Github repositories of kotlin
 
+![Build unit tests](https://github.com/josealfonsomora/jetpack-github-trends/workflows/Build%20unit%20tests/badge.svg?branch=master&event=push)
+
 ### Github API
 
 ### Architecture and Dependencies

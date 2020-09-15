@@ -34,8 +34,27 @@ class GithubReposRepositoryImp(
         GithubReposRepository.Result.Error(e)
     }
 
+    override suspend fun getGithubReposPaginated(page: Int, pageSize: Int) = try {
+        val response = githubApi.getRepositories(page = page, reposPerPage = pageSize)
+        if (response.isSuccessful) {
+            response.body()?.items?.let { list ->
+                database.saveGithubRepos(list)
+                GithubReposRepository.Result.Success(list.map { it.toDomainModel() })
+            } ?: run {
+                GithubReposRepository.Result.Error(EmptyContentException("Items are null"))
+            }
+        } else {
+            GithubReposRepository.Result.Error(Throwable(response.errorBody().toString()))
+        }
+    } catch (e: Throwable) {
+        Timber.e(e, "Error loading paginated github repos page - $page pagesize - $pageSize")
+        GithubReposRepository.Result.Error(e)
+    }
+
     override suspend fun getGithubRepo(repoId: Int): GithubReposRepository.Result {
         val repo = database.getGithubRepo(repoId)
         return GithubReposRepository.Result.Success(repo)
     }
+
+
 }

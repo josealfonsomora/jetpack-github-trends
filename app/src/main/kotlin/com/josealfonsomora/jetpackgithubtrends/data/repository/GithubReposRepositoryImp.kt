@@ -33,4 +33,9 @@ class GithubReposRepositoryImp(
         Timber.e(e, "Error loading github repos")
         GithubReposRepository.Result.Error(e)
     }
+
+    override suspend fun getGithubRepo(repoId: Int): GithubReposRepository.Result {
+        val repo = database.getGithubRepo(repoId)
+        return GithubReposRepository.Result.Success(repo)
+    }
 }

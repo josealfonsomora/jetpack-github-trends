@@ -12,7 +12,7 @@ interface GithubOwnerDao {
     suspend fun getAll(): List<GithubOwnerEntity>
 
     @Query("SELECT * FROM owner WHERE id = :id")
-    suspend fun getGithubRepository(id: Int): GithubOwnerEntity
+    suspend fun getOwner(id: Int): GithubOwnerEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(list: List<GithubOwnerEntity>)

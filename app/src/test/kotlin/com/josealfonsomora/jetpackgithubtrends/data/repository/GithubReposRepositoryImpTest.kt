@@ -123,4 +123,16 @@ class GithubReposRepositoryImpTest {
         assertTrue(result is GithubReposRepository.Result.Success<*>)
         assertEquals(databaseRepos, (result as GithubReposRepository.Result.Success<*>).data)
     }
+
+    @Test
+    fun `return repo from cached data filtered by id`() = ctr.dispatcher.runBlockingTest {
+        val mockRepo = mockk<GithubRepo>()
+        val repoId = 1
+        coEvery { database.getGithubRepo(repoId) } returns mockRepo
+
+        val result = underTest.getGithubRepo(repoId)
+
+        assertTrue(result is GithubReposRepository.Result.Success<*>)
+        assertEquals(mockRepo, (result as GithubReposRepository.Result.Success<*>).data)
+    }
 }

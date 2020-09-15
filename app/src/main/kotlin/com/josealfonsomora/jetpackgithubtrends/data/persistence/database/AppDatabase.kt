@@ -65,4 +65,12 @@ class AppDatabase @Inject constructor(
             .insertAll(list.filter { it.license != null }.map { it.license!!.toDatabaseEntity() })
     }
 
+    suspend fun getGithubRepo(repoId: Int): GithubRepo {
+        val repoEntity = database.githubRepoDao().getGithubRepository(repoId)
+        val license = repoEntity.license?.let { database.githubLicenseDao().getLicense(it) }
+        val owner = repoEntity.owner?.let { database.githubOwnerDao().getOwner(it) }
+
+        return repoEntity.toDomainModel(owner?.toDomainModel(), license?.toDomainModel())
+    }
+
 }

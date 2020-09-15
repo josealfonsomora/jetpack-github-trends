@@ -5,8 +5,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.josealfonsomora.jetpackgithubtrends.R
 import com.josealfonsomora.jetpackgithubtrends.databinding.GithubReposListFragmentBinding
+import com.josealfonsomora.jetpackgithubtrends.ui.repodetails.GithubRepoDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -15,7 +17,9 @@ class GithubReposListFragment : Fragment(R.layout.github_repos_list_fragment) {
 
     private val adapter by lazy {
         GithubReposListAdapter {
-            Toast.makeText(requireContext(), "Item id $it", Toast.LENGTH_SHORT).show()
+            val action =
+                GithubReposListFragmentDirections.actionGithubReposListDestToGithubRepoDetailDest(it)
+            findNavController().navigate(action)
         }
     }
 

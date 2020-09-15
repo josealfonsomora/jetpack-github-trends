@@ -4,7 +4,7 @@ import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
-@BindingAdapter("app:refreshing")
+@BindingAdapter("refreshing")
 fun refreshing(view: SwipeRefreshLayout?, visibility: Int?) {
     view?.let {
         it.isRefreshing = visibility == View.VISIBLE

@@ -12,7 +12,7 @@ interface GithubLicenseDao {
     suspend fun getAll(): List<GithubLicenseEntity>
 
     @Query("SELECT * FROM license WHERE `key` = :key")
-    suspend fun getGithubRepository(key: String): GithubLicenseEntity
+    suspend fun getLicense(key: String): GithubLicenseEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(list: List<GithubLicenseEntity>)

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GithubCounter">
+        <attr name="git_hub_counter_icon" format="integer" />
+        <attr name="git_hub_counter_title" format="string" />
+    </declare-styleable>
+</resources>

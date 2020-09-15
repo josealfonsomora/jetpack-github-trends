@@ -21,7 +21,7 @@ class GithubReposListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = items[holder.adapterPosition]
+        val item = items[holder.bindingAdapterPosition]
         holder.bind(item)
         holder.itemView.setOnClickListener { item.id?.let { onClickListener(it) } }
     }

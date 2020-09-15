@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,27 +12,87 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/url"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{model.url}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="https://github.com/dbacinski/Design-Patterns-In-Kotlin" />
 
         <TextView
             android:id="@+id/title"
-            style="@style/TextAppearance.MaterialComponents.Headline3"
-            android:layout_width="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{model.name}"
             android:textAlignment="textStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/url"
+            tools:text="Design-Patterns-In-Kotlin" />
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            app:githubAvatarUrl="@{model.ownerImage}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:src="@drawable/github_placeholder" />
 
         <TextView
+            android:id="@+id/description"
             style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:text="@{model.description}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/avatar"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:text="Design Patterns implemented in Kotlin" />
+
+        <com.josealfonsomora.jetpackgithubtrends.ui.custom.GithubCounter
+            android:id="@+id/stars"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{model.createdDate}"
-            android:textAlignment="textStart"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="8dp"
+            app:git_hub_counter="@{model.stars}"
+            app:git_hub_counter_icon="@drawable/ic_star"
+            app:git_hub_counter_title="Stars"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title" />
+            app:layout_constraintTop_toBottomOf="@id/avatar" />
+
+        <com.josealfonsomora.jetpackgithubtrends.ui.custom.GithubCounter
+            android:id="@+id/watchers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:git_hub_counter="@{model.watchers}"
+            app:git_hub_counter_icon="@drawable/ic_eye"
+            app:git_hub_counter_title="Watchers"
+            app:layout_constraintStart_toEndOf="@id/stars"
+            app:layout_constraintTop_toBottomOf="@id/avatar" />
+
+        <com.josealfonsomora.jetpackgithubtrends.ui.custom.GithubCounter
+            android:id="@+id/forks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:git_hub_counter="@{model.forks}"
+            app:git_hub_counter_icon="@drawable/ic_fork"
+            app:git_hub_counter_title="Forks"
+            app:layout_constraintStart_toEndOf="@id/watchers"
+            app:layout_constraintTop_toBottomOf="@id/avatar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

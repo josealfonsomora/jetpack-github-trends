@@ -8,8 +8,6 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
-import androidx.lifecycle.LifecycleRegistryOwner
-import androidx.lifecycle.LiveData
 import com.josealfonsomora.jetpackgithubtrends.R
 import kotlin.properties.Delegates
 

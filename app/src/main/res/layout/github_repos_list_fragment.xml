@@ -14,11 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include layout="@layout/transparent_toolbar" />
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
             app:refreshing="@{model.loadingVisibility}">
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/reposList"

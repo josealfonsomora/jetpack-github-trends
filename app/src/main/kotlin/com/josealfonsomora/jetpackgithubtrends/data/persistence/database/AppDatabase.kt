@@ -8,7 +8,9 @@ import com.josealfonsomora.jetpackgithubtrends.data.model.GithubRepoDataModel
 import com.josealfonsomora.jetpackgithubtrends.data.model.toDatabaseEntity
 import com.josealfonsomora.jetpackgithubtrends.data.persistence.database.entity.toDomainModel
 import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepo
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.map
 import org.threeten.bp.Instant
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZoneOffset

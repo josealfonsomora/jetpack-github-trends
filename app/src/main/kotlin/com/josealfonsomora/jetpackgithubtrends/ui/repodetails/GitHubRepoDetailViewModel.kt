@@ -24,18 +24,21 @@ class GitHubRepoDetailViewModel @ViewModelInject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
     @SystemZoneId private val zone: ZoneId = ZoneId.systemDefault()
 ) : ViewModel() {
+    private val _title = MutableLiveData<String>()
+    val title: LiveData<String> = _title
+
     private val _name = MutableLiveData<String>()
     val name: LiveData<String> = _name
+
     private val _createdDate = MutableLiveData<String>()
     val createdDate: LiveData<String> = _createdDate
-    private val _updatedDate = MutableLiveData<String>()
-    val updatedDate: LiveData<String> = _updatedDate
-    private val _pushedDate = MutableLiveData<String>()
-    val pushedDate: LiveData<String> = _pushedDate
+
     private val _url = MutableLiveData<String>()
     val url: LiveData<String> = _url
+
     private val _description = MutableLiveData<String>()
     val description: LiveData<String> = _description
+
     private val _license = MutableLiveData<String>()
     val license: LiveData<String> = _license
 
@@ -44,9 +47,6 @@ class GitHubRepoDetailViewModel @ViewModelInject constructor(
 
     private val _forks = MutableLiveData<String>()
     val forks: LiveData<String> = _forks
-
-    private val _issues = MutableLiveData<String>()
-    val issues: LiveData<String> = _issues
 
     private val _stars = MutableLiveData<String>()
     val stars: LiveData<String> = _stars
@@ -60,21 +60,15 @@ class GitHubRepoDetailViewModel @ViewModelInject constructor(
                 is GetGithubRepoUseCase.Result.Success -> {
                     val repo = result.data
                     _name.postValue(repo.fullName)
+                    _title.postValue(repo.name)
                     _url.postValue(repo.htmlUrl)
                     _description.postValue(repo.description)
                     _license.postValue(repo.license?.name)
                     _watchers.postValue(repo.watchersCount.toReadableK())
                     _forks.postValue(repo.forksCount.toReadableK())
                     _stars.postValue(repo.stargazersCount.toReadableK())
-                    _issues.postValue(repo.openIssuesCount.toReadableK())
                     repo.createdAt?.let {
                         _createdDate.postValue(it.toZonedDateTime(zone).format(dateShortFormatter))
-                    }
-                    repo.updatedAt?.let {
-                        _updatedDate.postValue(it.toZonedDateTime(zone).format(dateShortFormatter))
-                    }
-                    repo.pushedAt?.let {
-                        _pushedDate.postValue(it.toZonedDateTime(zone).format(dateShortFormatter))
                     }
                     _ownerImage.postValue(repo.owner?.avatarUrl)
                 }

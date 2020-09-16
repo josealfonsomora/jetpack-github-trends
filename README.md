@@ -4,6 +4,10 @@ Android Jetpack example - List of trending Github repositories of kotlin
 
 ![Build unit tests](https://github.com/josealfonsomora/jetpack-github-trends/workflows/Build%20unit%20tests/badge.svg?branch=master&event=push)
 
+| Single Fetch List | Paginated List |  Detail |
+|---|---|---|
+| ![single_fetch](https://user-images.githubusercontent.com/793226/93311832-c497db00-f806-11ea-8571-429e0e544d54.gif) | ![paginated](https://user-images.githubusercontent.com/793226/93311948-eabd7b00-f806-11ea-8570-299095f5ae38.gif) | ![Detail](https://user-images.githubusercontent.com/793226/93311205-fd838000-f805-11ea-9349-9a426f45aa16.png)|
+
 ### Github API
 
 ### Architecture and Dependencies

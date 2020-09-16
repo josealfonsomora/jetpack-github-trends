@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.josealfonsomora.jetpackgithubtrends.commons.toReadableK
 import com.josealfonsomora.jetpackgithubtrends.databinding.GithubReposListAdapterItemBinding
 import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepo
 import com.josealfonsomora.jetpackgithubtrends.ui.reposlist.GithubReposListAdapterItemViewModel
@@ -32,9 +33,9 @@ class GithubReposPaginatedListAdapter(
         fun bind(item: GithubRepo) {
             binding.model = GithubReposListAdapterItemViewModel(
                 item.fullName,
-                item.stargazersCount.toString(),
-                item.watchers.toString(),
-                item.forks.toString(),
+                item.stargazersCount.toReadableK(),
+                item.watchers.toReadableK(),
+                item.forks.toReadableK(),
                 item.license?.name
 
             )
@@ -51,5 +52,5 @@ val diffCallback = object : DiffUtil.ItemCallback<GithubRepo>() {
     override fun areContentsTheSame(
         oldItem: GithubRepo,
         newItem: GithubRepo
-    ): Boolean = oldItem.name == newItem.name && oldItem.fullName == newItem.fullName
+    ): Boolean = oldItem == newItem
 }

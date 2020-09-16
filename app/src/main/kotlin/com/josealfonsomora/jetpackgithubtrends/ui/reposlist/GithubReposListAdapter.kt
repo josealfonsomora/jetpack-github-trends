@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.josealfonsomora.jetpackgithubtrends.commons.toReadableK
 import com.josealfonsomora.jetpackgithubtrends.databinding.GithubReposListAdapterItemBinding
 import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepo
 
@@ -36,9 +37,9 @@ class GithubReposListAdapter(
         fun bind(item: GithubRepo) {
             binding.model = GithubReposListAdapterItemViewModel(
                 item.fullName,
-                item.stargazersCount.toString(),
-                item.watchers.toString(),
-                item.forks.toString(),
+                item.stargazersCount.toReadableK(),
+                item.watchers.toReadableK(),
+                item.forks.toReadableK(),
                 item.license?.name
 
             )

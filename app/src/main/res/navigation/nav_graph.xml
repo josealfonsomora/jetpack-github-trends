@@ -12,7 +12,7 @@
         android:name="com.josealfonsomora.jetpackgithubtrends.ui.reposlist.GithubReposListFragment"
         tools:layout="@layout/github_repos_list_fragment">
         <action
-            android:id="@+id/action_github_repos_list_dest_to_github_repo_detail_dest"
+            android:id="@+id/action_repos_listt_to_detail_dest"
             app:destination="@id/github_repo_detail_dest"
             app:enterAnim="@anim/fragment_close_enter"
             app:popEnterAnim="@anim/fragment_close_exit" />
@@ -24,7 +24,7 @@
         tools:layout="@layout/github_repos_list_fragment">
 
         <action
-            android:id="@+id/action_github_repos_paginated_list_dest_to_github_repo_detail_dest"
+            android:id="@+id/action_paginated_list_detail_dest"
             app:destination="@id/github_repo_detail_dest"
             app:enterAnim="@anim/fragment_close_enter"
             app:popEnterAnim="@anim/fragment_close_exit" />

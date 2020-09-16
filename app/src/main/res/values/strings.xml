@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Jetpack Github Trends</string>
     <string name="error_loading_repos">Error loading repositories</string>
+    <string name="paginated_list">Paginated list</string>
+    <string name="single_fetch_list">Single fetch list</string>
+    <string name="created">Created:</string>
 </resources>

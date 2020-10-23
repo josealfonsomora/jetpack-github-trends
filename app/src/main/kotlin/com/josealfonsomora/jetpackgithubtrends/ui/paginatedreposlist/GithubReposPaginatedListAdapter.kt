@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.josealfonsomora.jetpackgithubtrends.commons.toReadableK
 import com.josealfonsomora.jetpackgithubtrends.databinding.GithubReposListAdapterItemBinding
 import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepo
-import com.josealfonsomora.jetpackgithubtrends.ui.reposlist.GithubReposListAdapterItemViewModel
 
 class GithubReposPaginatedListAdapter(
     private val onClickListener: (Int) -> Unit

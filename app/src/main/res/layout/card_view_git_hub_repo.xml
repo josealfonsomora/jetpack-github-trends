@@ -7,26 +7,25 @@
 
         <variable
             name="model"
-            type="com.josealfonsomora.jetpackgithubtrends.ui.paginatedreposlist.GithubReposListAdapterItemViewModel" />
+            type="com.josealfonsomora.jetpackgithubtrends.ui.custom.GithubCardViewModel" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <merge
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        app:elevation="4dp">
+        tools:parentTag="androidx.cardview.widget.CardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="?android:selectableItemBackground"
             android:padding="8dp">
 
             <TextView
                 android:id="@+id/name"
                 style="@style/TextAppearance.MaterialComponents.Headline6"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="4dp"
                 android:ellipsize="end"
@@ -91,13 +90,11 @@
                 android:drawablePadding="4dp"
                 android:padding="8dp"
                 android:text="@{model.license}"
-                android:textSize="10sp"
-                tools:text = "Apache License 2.0"
                 android:visibility="@{model.licenseVisibility}"
                 app:drawableStartCompat="@drawable/ic_license"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/name" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </merge>
 </layout>

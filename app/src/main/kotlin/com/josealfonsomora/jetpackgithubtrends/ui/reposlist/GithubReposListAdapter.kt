@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.josealfonsomora.jetpackgithubtrends.R
 import com.josealfonsomora.jetpackgithubtrends.commons.toReadableK
-import com.josealfonsomora.jetpackgithubtrends.databinding.GithubReposListAdapterItemBinding
 import com.josealfonsomora.jetpackgithubtrends.domain.model.GithubRepo
+import com.josealfonsomora.jetpackgithubtrends.ui.custom.GithubCardViewModel
+import com.josealfonsomora.jetpackgithubtrends.ui.custom.GithubItemView
 
 class GithubReposListAdapter(
     private var items: List<GithubRepo> = emptyList(),
@@ -16,14 +18,20 @@ class GithubReposListAdapter(
     override fun getItemCount() = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = GithubReposListAdapterItemBinding.inflate(inflater, parent, false)
-        return ViewHolder(binding)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.github_repps_custom_view_list_adapter_item, parent, false)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[holder.bindingAdapterPosition]
-        holder.bind(item)
+        holder.githubView.model = GithubCardViewModel(
+            item.fullName,
+            item.stargazersCount.toReadableK(),
+            item.watchers.toReadableK(),
+            item.forks.toReadableK(),
+            item.license?.name
+        )
         holder.itemView.setOnClickListener { item.id?.let { onClickListener(it) } }
     }
 
@@ -32,27 +40,7 @@ class GithubReposListAdapter(
         notifyDataSetChanged()
     }
 
-    class ViewHolder(val binding: GithubReposListAdapterItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: GithubRepo) {
-            binding.model = GithubReposListAdapterItemViewModel(
-                item.fullName,
-                item.stargazersCount.toReadableK(),
-                item.watchers.toReadableK(),
-                item.forks.toReadableK(),
-                item.license?.name
-
-            )
-        }
+    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        val githubView = view.findViewById<GithubItemView>(R.id.item)
     }
-}
-
-class GithubReposListAdapterItemViewModel(
-    val name: String?,
-    val stars: String?,
-    val watchers: String?,
-    val forks: String?,
-    val license: String?
-) {
-    val licenseVisibility = if (license.isNullOrEmpty()) View.GONE else View.VISIBLE
 }

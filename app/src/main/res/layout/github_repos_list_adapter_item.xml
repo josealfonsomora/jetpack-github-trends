@@ -55,7 +55,7 @@
                     android:padding="8dp"
                     android:text="@{model.stars}"
                     app:drawableStartCompat="@drawable/ic_star"
-                    app:drawableTint="@android:color/black"
+                    app:drawableTint="?attr/colorPrimary"
                     tools:text="12.2K" />
 
                 <TextView
@@ -67,7 +67,7 @@
                     android:padding="8dp"
                     android:text="@{model.watchers}"
                     app:drawableStartCompat="@drawable/ic_eye"
-                    app:drawableTint="@android:color/black"
+                    app:drawableTint="?attr/colorPrimary"
                     tools:text="12.2K" />
 
                 <TextView
@@ -79,7 +79,7 @@
                     android:padding="8dp"
                     android:text="@{model.forks}"
                     app:drawableStartCompat="@drawable/ic_fork"
-                    app:drawableTint="@android:color/black"
+                    app:drawableTint="?attr/colorPrimary"
                     tools:text="12.2K" />
 
             </LinearLayout>
